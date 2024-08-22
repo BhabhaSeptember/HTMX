@@ -13,7 +13,6 @@ app.use(express.static("public"));
 //Requests sent and responses recieved in JSON format
 app.use(express.json());
 
-
 //Handle POST request for email validation
 app.post("/email", (req, res) => {
   const submittedEmail = req.body.email;
@@ -55,14 +54,10 @@ app.post("/email", (req, res) => {
         </div>   
     `);
   }
-})
+});
 
-
- 
 //Start the server on specified port number
 //Console refers to terminal
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
 });
-
-
