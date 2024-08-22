@@ -16,7 +16,7 @@ app.use(express.json());
 let currentPrice = 60;
 
 app.get("/get-price", (req, res) => {
-  currentPrice = currentPrice + Math.random() *2 -1;
+  currentPrice = currentPrice + Math.random() * 2 - 1;
   res.send(`$ ${currentPrice.toFixed(1)}`);
 });
 

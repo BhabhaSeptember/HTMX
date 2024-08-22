@@ -38,8 +38,9 @@ app.post("/search", async(req, res) => {
   <tr>
   <td>${user.name}</td>
   <td>${user.email}</td>
+  </tr>
   `).join("");
-  
+
   res.send(searchResultHtml);
 })
 //Start the server on specified port number
