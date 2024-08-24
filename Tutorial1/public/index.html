@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.2"
+      integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+      crossorigin="anonymous"
+    ></script>
     <title>Tut1-HTMX Crash Course</title>
-
+  </head>
+  <body>
     
-</head>
-<body>
-    <h1>HTMX Crash Course</h1>
-    <hr>
+    <div class="text-center">
 
-    <div class="text-center"></div>
-    <h1 class="text-2xl font-bold my-5">
-        Simple Request 
-    </h1>
-    <button 
-    hx-get="/users" 
-    hx-trigger="mouseover" 
-    hx-target="#users"
-    class="bg-blue-500 text-white py-2 px-3 my-5 rounded-lg">
-        Fetch Users
-    </button>
-    div.users
-
-
-
+      <span hx-get="/poll" hx-trigger="every 5s">
+          Loading...
+      </span>
+  </div>
+  
     <script src="https://cdn.tailwindcss.com"></script>
-</body>
+
+
+  </body>
 </html>

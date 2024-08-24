@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.2"
+      integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+      crossorigin="anonymous"
+    ></script>
+    <title>Tut1-HTMX Crash Course</title>
+  </head>
+  <body>
+    <h1>HTMX Crash Course</h1>
+    <hr />
+
+    <div class="text-center">
+      <h1 class="text-2xl font-bold my-5">Simple Request</h1>
+      
+      <!-- hx-swap="outerHTML" -->
+      <!-- hx-confirm="Are you sure you want to fetch users?" -->
+      
+      <button
+        hx-get="/users"
+        hx-trigger="click"
+        hx-target="#users"
+       hx-vals='{"limit": 5}'
+        hx-indicator="#loading"
+        class="bg-blue-500 text-white py-2 px-3 my-5 rounded-lg"
+      >
+        Fetch Users
+      </button>
+      <br>
+      
+
+      <span class="htmx-indicator" id="loading">
+        <img src="img/loader.gif" alt="Loading..." class="m-auto h-10">
+      </span>
+
+      <div id="users"></div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </body>
+</html>
