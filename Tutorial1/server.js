@@ -13,8 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Handle GET requests to fetch users
-
-//(request, response objects
+//(request, response objects)
 
 // app.get("/users", (req, res)=> {
 // const users = [
@@ -49,41 +48,111 @@ app.get("/users", async (req, res) => {
   }, 2000);
 });
 
+//*********************************************************************************************/
+//Handle POST request for temperature conversion
+app.post("/convert", (req, res) => {
+  setTimeout(() => {
+    const fahrenheit = parseFloat(req.body.fahrenheit);
+    const celsius = (fahrenheit - 32) * (5 / 9);
 
-  //Handle POST request for temperature conversion
-  app.post("/convert", (req, res) => {
-    setTimeout(() => {
-      const fahrenheit = parseFloat(req.body.fahrenheit);
-      const celsius = (fahrenheit - 32) * (5 / 9);
-
-      res.send(`
+    res.send(`
             <p>
-            ${fahrenheit} degrees Fahrenheit = ${celsius.toFixed(2)} degrees Celsius
+            ${fahrenheit} degrees Fahrenheit = ${celsius.toFixed(
+      2
+    )} degrees Celsius
             </p>`);
-    }, 2000);
-  });
+  }, 2000);
+});
 
-
-  let counter = 0;
+//*********************************************************************************************/
+let counter = 0;
 //Handle GET request for polling example
 app.get("/poll", (req, res) => {
-counter++;
-const data = {value: counter};
-res.json(data);
+  counter++;
+  const data = { value: counter };
+  res.json(data);
 });
 
-
+//*********************************************************************************************/
 let currentTemp = 20;
 //Handle GET request for weather app example
-app.get("get-temperature", (req, res) => {
-    currentTemp += Math.random() * 2 -1;
+app.get("/get-temperature", (req, res) => {
+  currentTemp += Math.random() * 2 - 1;
 
-
-    
-    res.send(currentTemp.toFixed(1) + "Celsius")
-
+  res.send(currentTemp.toFixed(1) + "°C");
 });
 
+
+//*********************************************************************************************/
+// const contacts = [
+//     {name: "Anne de Villiers", email: "anne@isidingo.com"},
+//     {name: "Bruce Willis", email: "bruce@willis.com"},
+//     {name: "Chris Brown", email: "chris@brown.com"},
+//     {name: "Denzel Washington", email: "denzel@washington.com"},
+//     {name: "Earl Gray", email: "earl@myname.com"}
+// ]
+// //Handle POST request for contact search
+// app.post("/search", (req, res) => {
+// const searchTerm = req.body.search.toLowerCase();
+
+// if(!searchTerm) {
+//     return res.send("<tr></tr>");
+// }
+
+// const searchResults = contacts.filter(contact => {
+//     const name = contact.name.toLowerCase();
+//     const email = contact.email.toLowerCase();
+
+//     return name.includes(searchTerm) || email.includes(searchTerm)
+// });
+
+// setTimeout(() => {
+//     const searchResultHtml = searchResults.map(contact => `
+//     <tr>
+//     <td><div class="my-4 p-2">${contact.name}</div></td>
+//     <td><div class="my-4 p-2">${contact.email}</div></td>
+
+//     </tr>
+//     `).join("");
+
+//     res.send(searchResultHtml);
+// }, 1000);
+// })
+
+
+//Handle POST request for contact search from jsonplaceholder
+app.post("/search/api", async (req, res) => {
+  const searchTerm = req.body.search.toLowerCase();
+
+  if (!searchTerm) {
+    return res.send("<tr></tr>");
+  }
+
+  const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+  const contacts = await response.json();
+
+  const searchResults = contacts.filter((contact) => {
+    const name = contact.name.toLowerCase();
+    const email = contact.email.toLowerCase();
+
+    return name.includes(searchTerm) || email.includes(searchTerm);
+  });
+
+  setTimeout(() => {
+    const searchResultHtml = searchResults
+      .map(
+        (contact) => `
+        <tr>
+        <td><div class="my-4 p-2">${contact.name}</div></td>
+        <td><div class="my-4 p-2">${contact.email}</div></td>
+        </tr>
+        `
+      )
+      .join("");
+
+    res.send(searchResultHtml);
+  }, 1000);
+});
 
 //Starting the server
 app.listen(3000, () => {
