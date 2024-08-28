@@ -27,8 +27,8 @@ router.get('/contacts', (req, res) => {
   // GET /contacts/new
 router.get('/contacts/new', (req, res) => {
     if (req.headers['hx-request']) {
-        -    res.render('form');
-        +    res.render('form', { contact: {} });
+        res.render('form');
+        res.render('form', { contact: {} });
     } else {
       res.render('index', { action: 'new', contacts, contact: {} });
     }
@@ -82,5 +82,40 @@ router.get('/contacts/:id/edit', (req, res) => {
       res.render('index', { action: 'edit', contacts, contact });
     }
   });  
+
+//***************************router.put("/update/:id", ) */
+// PUT /contacts/1
+router.put('/contacts/:id', (req, res) => {
+    const { id } = req.params;
+  
+    const newContact = {
+      id: Number(id),
+      name: req.body.name,
+      email: req.body.email,
+    };
+  
+    const index = contacts.findIndex((c) => c.id === Number(id));
+  
+    if (index !== -1) contacts[index] = newContact;
+  
+    if (req.headers['hx-request']) {
+      res.render('sidebar', { contacts }, (err, sidebarHtml) => {
+        res.render('contact', { contact: contacts[index] }, (err, contactHTML) => {
+          const html = `
+            ${sidebarHtml}
+            <main id="content" hx-swap-oob="true">
+              <p class="flash">Contact was successfully updated!</p>
+              ${contactHTML}
+            </main>
+          `;
+  
+          res.send(html);
+        });
+      });
+    } else {
+      res.redirect(`/contacts/${index + 1}`);
+    }
+  });
+  
   
 module.exports = router;
