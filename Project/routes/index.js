@@ -15,12 +15,7 @@ const contacts = [
   { id: 10, name: 'Chen Yu', email: 'chen.yu@example.com' },
 ];
 
-// // GET /contacts
-// router.get('/contacts', (req, res) => {
-//   res.send("Contact Page");
-// });
-
-//GET /contacts
+// GET /contacts
 router.get('/contacts', (req, res) => {
   res.render('index', { action: '', contacts, contact: {} });
 });

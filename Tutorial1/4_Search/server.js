@@ -58,7 +58,7 @@ app.post("/search/api", async (req, res) => {
     return res.send("<tr></tr>");
   }
 
-  const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const contacts = await response.json();
 
   const searchResults = contacts.filter((contact) => {
