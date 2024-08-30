@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Click n Pay
+    title Weekly Planner
 
     link(rel='preconnect', href='https://fonts.googleapis.com')
     link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
@@ -12,9 +12,7 @@ html
   body
     header
       a(href='/contacts')
-        h1 Welcome to Click 'n Pay
-        h1 
-
+        h1 Weekly Planner
 
     section#sidebar
       include sidebar.pug
@@ -22,12 +20,14 @@ html
     main#content
       case action
         when 'show'
-          include contact.pug
+          include date.pug
         when 'new'
           include form.pug
         when 'edit'
           include form.pug
+        when 'appointments'
+          include appointment.pug  
         default
-          p Select a contact
+          p Select a day to View/Update/Delete your scheduled appointments
 
     script(src='https://unpkg.com/htmx.org@1.9.10')

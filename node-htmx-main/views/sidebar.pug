@@ -1,0 +1,17 @@
+ul.contact-list
+  each date in dates
+    li
+      a(
+        href=`/dates/${date.id}`,
+        hx-get=`/dates/${date.id}`,
+        hx-target='#content'
+        hx-push-url='true',
+      )= date.day
+
+div.actions
+  a(
+    href='/dates/new',
+    hx-get='/dates/new',
+    hx-target='#content',
+    hx-push-url='true'
+  ) Add Day

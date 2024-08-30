@@ -1,0 +1,32 @@
+h2 #{date.day}
+
+p #[strong Date:] #{date.date}
+p #[strong Time:] #{date.time}
+p #[strong Location:] #{date.location}
+p #[strong Agenda:] #{date.agenda}
+
+div.actions
+  a(
+    href='/dates/appointments',
+    hx-get='/dates/appointments',
+    hx-target='#content',
+    hx-push-url='true'
+  ) Add Appointment
+
+  form(method='POST', action=`/delete/${date.id}?_method=DELETE`)
+    button(
+      type='submit',
+      hx-delete=`/delete/${date.id}`,
+      hx-target='#sidebar',
+      hx-push-url='/dates'
+      class='link'
+    ) Delete
+
+  a(
+    href=`/dates/${date.id}/edit`,
+    hx-get=`/dates/${date.id}/edit`,
+    hx-push-url='true',
+    hx-target='#content'
+  ) Edit
+
+  

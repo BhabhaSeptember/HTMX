@@ -1,0 +1,31 @@
+- isEditing = () => !(Object.keys(date).length === 0);
+
+h2=isEditing() ? "Edit Schedule" : "New Appointment"
+
+form(
+  action=isEditing() ? `/update/${date.id}?_method=PUT` : '/dates',
+  method='POST',
+
+  hx-post=isEditing() ? false : '/dates',
+  hx-put=isEditing() ? `/update/${date.id}` : false,
+  hx-target='#sidebar',
+  hx-push-url=isEditing() ? `/dates/${date.id}` : false
+  hx-on::after-request='if(event.detail.successful) this.reset()',
+)
+  label(for='day') Day:
+  input#name(type='text', name='day', required, value=date.day)
+
+  label(for='date') Date:
+  input#name(type='text', name='date', required, value=date.date, placeholder='DD/MM/YYYY')
+
+  label(for='time') Time:
+  input#name(type='text', name='time', required, value=date.time, placeholder='HH/MM')
+
+  label(for='location') Location:
+  input#name(type='text', name='location', required, value=date.location)
+
+  label(for='agenda') Agenda:
+  input#name(type='text', name='agenda', required, value=date.agenda)
+
+  div.actions
+    button(type='submit') Submit
