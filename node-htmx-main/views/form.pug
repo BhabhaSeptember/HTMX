@@ -12,8 +12,6 @@ form(
   hx-push-url=isEditing() ? `/dates/${date.id}` : false
   hx-on::after-request='if(event.detail.successful) this.reset()',
 )
-  label(for='day') Day:
-  input#name(type='text', name='day', required, value=date.day)
 
   label(for='date') Date:
   input#name(type='text', name='date', required, value=date.date, placeholder='DD/MM/YYYY')
@@ -25,7 +23,7 @@ form(
   input#name(type='text', name='location', required, value=date.location)
 
   label(for='agenda') Agenda:
-  input#name(type='text', name='agenda', required, value=date.agenda)
+  textarea#name(type='text', name='agenda', required, value=date.agenda)
 
   div.actions
     button(type='submit') Submit

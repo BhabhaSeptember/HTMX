@@ -3,11 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 const dates = [
-  { id: 1, day: 'Monday', date: '02/08/2024', time: '08:30am', location: 'Online Teams Meeting', agenda: 'Check progress of ongoing projects. Discuss new project ideas' },
-  { id: 2, day: 'Tuesday', date: '03/08/2024', time: '09:00am', location: 'Meeting Room 7', agenda: 'Wrap up outstanding tasks' },
-  { id: 3, day: 'Wednesday', date: '04/08/2024', time: '10:30am', location: 'BMW Office 3', agenda: 'Gather information regarding latest project for the client' },
-  { id: 4, day: 'Thursday', date: '05/08/2024', time: '09:00am', location: 'NLC Building 2', agenda: 'Brainstorm session for new BMW project ' },
-  { id: 5, day: 'Friday', date: '06/08/2024', time: '08:30am', location: 'Online Teams Meeting', agenda: 'Check progress of ongoing projects. Address issues from the week' },
+  { id: 1, day: 'Monday', date: '02/09/2024', time: '08:30am', location: 'Online Teams Meeting', agenda: 'General morning check-up' },
+  { id: 2, day: 'Monday', date: '02/09/2024', time: '10:00am', location: 'Meeting Room 7', agenda: 'Check progress of ongoing projects. Discuss new project ideas' },
+  { id: 3, day: 'Monday', date: '02/09/2024', time: '12:30am', location: 'BMW Office 3', agenda: 'Gather information regarding latest project for the client' },
+  { id: 4, day: 'Monday', date: '02/09/2024', time: '14:00am', location: 'NLC Building 2', agenda: 'Brainstorm session for new BMW project ' },
+  { id: 5, day: 'Monday', date: '02/09/2024', time: '16:00am', location: 'Online Teams Meeting', agenda: 'Address issues from the day' },
 ];
 
 // GET /dates
@@ -66,7 +66,7 @@ router.post('/dates', (req, res) => {
     res.render('sidebar', { dates }, (err, sidebarHtml) => {
       const html = `
         <main id="content" hx-swap-oob="afterbegin">
-          <p class="flash">Added successfully!</p>
+          <p class="flash">Appointment added successfully!</p>
         </main>
         ${sidebarHtml}
       `;
@@ -129,7 +129,7 @@ router.delete('/delete/:id', (req, res) => {
     res.render('sidebar', { dates }, (err, sidebarHtml) => {
       const html = `
         <main id="content" hx-swap-oob="true">
-          <p class="flash">Succesful delete!</p>
+          <p class="flash">Deleted successfully!</p>
         </main>
         ${sidebarHtml}
       `;

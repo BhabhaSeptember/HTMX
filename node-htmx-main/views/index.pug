@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Weekly Planner
+    title Daily Planner
 
     link(rel='preconnect', href='https://fonts.googleapis.com')
     link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
@@ -12,7 +12,7 @@ html
   body
     header
       a(href='/contacts')
-        h1 Weekly Planner
+        h1 Daily Schedule
 
     section#sidebar
       include sidebar.pug
@@ -24,10 +24,9 @@ html
         when 'new'
           include form.pug
         when 'edit'
-          include form.pug
-        when 'appointments'
-          include appointment.pug  
+          include form.pug 
         default
-          p Select a day to View/Update/Delete your scheduled appointments
+          h2 02/09/2024
+          p Select an appointment time to see more details
 
     script(src='https://unpkg.com/htmx.org@1.9.10')
