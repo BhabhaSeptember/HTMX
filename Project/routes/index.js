@@ -10,6 +10,11 @@ const dates = [
   { id: 5, day: 'Monday', date: '02/09/2024', time: '16:00am', location: 'Online Teams Meeting', agenda: 'Address issues from the day' },
 ];
 
+// GET /
+router.get('/', (req, res) => {
+  res.redirect('/dates');
+});
+
 // GET /dates
 router.get('/dates', (req, res) => {
   res.render('index', { action: '', dates, date: {} });

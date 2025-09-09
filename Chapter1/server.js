@@ -3,14 +3,17 @@ import express from "express";
 //Initialize express and save to const to get access to express methods
 const app = express();
 
+//Make the arg a static file to serve HTML files from it
+app.use(express.static("public"));
+ 
 //Parse URL encoded bodies(as sent by HTML forms)
+// i.e. reverse url encoding to convert encoded characters back to their
+// original form
 app.use(express.urlencoded({ extended: true }));
 
-//Host static files from public folder
-app.use(express.static("public"));
 
 //Parse JSON bodies(as sent by API clients)
-//Requests sent and responses recieved in JSON format
+//To process data sent in JSON format
 app.use(express.json());
 
 //Handle GET request to fetch users
@@ -21,6 +24,8 @@ app.use(express.json());
 //     { id: 3, name: "Shannon Woods" },
 //   ];
 
+// NOTE: join method concatenates all elements of array to single string
+// argument of join method is the separator i.e. here it is a space
 app.get("/users", async (req, res) => {
   setTimeout(async () => {
     const limit = +req.query.limit || 10; //+ converts from string to number
@@ -34,7 +39,7 @@ app.get("/users", async (req, res) => {
     <ul class="list-group>
     ${users
       .map((user) => `<li class="list-group-item">${user.name}</li>`)
-      .join("")} 
+      .join("")}  
     </ul>`);
   }, 2000);
 });
